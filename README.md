@@ -6,8 +6,9 @@ This is my final project for DSC80 at UCSD, and focuses on a dataset of recipes 
 
 
 ## Introduction
-Food is an important aspect of everyone's life, especially mine. Food is not just a necessity, but cooking and baking is a hobby and profession for many. Naturally, food.com becomes a prominent website for finding recipes for a variety of dishes, and even allows you to leave reviews and ratings, helping others determine what recipes to try. When looking for a recipe to make, many home cooks value the time it takes to actually make a recipe, to fit it in their busy schedules. Because of this, I think it is important to understand the relationship between the length of the reicpe, and its rating, so I decided to focus on the question, <b>How does the length of the recipe/ ingredients affect the ratings of the recipe?<b> 
+Food is an important aspect of everyone's life, especially mine. Food is not just a necessity, but cooking and baking is a hobby and profession for many. Naturally, food.com becomes a prominent website for finding recipes for a variety of dishes, and even allows you to leave reviews and ratings, helping others determine what recipes to try. When looking for a recipe to make, many home cooks value the time it takes to actually make a recipe, to fit it in their busy schedules. Because of this, I think it is important to understand the relationship between the length of the reicpe, and its rating, so I decided to focus on the question, **How does the length of the recipe/ ingredients affect the ratings of the recipe?** 
 For this project, obtained 2 datasets, originally taken from food.com. The first dataset, called recipes, contains 12 columns, and 83782 rows. The second dataset, called reviews, contains 5 columns and 731927 rows. 
+
 The columns in the recipe dataframe that I use are:
 <table border="1" class="dataframe">
   <thead>
@@ -27,26 +28,42 @@ The columns in the recipe dataframe that I use are:
     </tr>
     <tr>
       <td>nutrition</td>
-      <td>a string (that looks like a list) of various nutrition facts including calories (#), total fat (PDV), sugar (PDV), sodium (PDV), protein (PDV), saturated fat (PDV), carbohydrates (PDV)</td>
+      <td>A string (that looks like a list) of various nutrition facts including calories (#), total fat (PDV), sugar (PDV), sodium (PDV), protein (PDV), saturated fat (PDV), carbohydrates (PDV)</td>
     </tr>
     <tr>
       <td>n_steps</td>
-      <td>the number of steps in the recipe</td>
+      <td>The number of steps in the recipe</td>
     </tr>
     <tr>
       <td>ingredients</td>
-      <td>a string (that looks like a list) of ingredients used in the recipe</td>
+      <td>A string (that looks like a list) of ingredients used in the recipe</td>
     </tr>
     <tr>
       <td>n_ingredients</td>
-      <td>the number of ingredients used in the recipe</td>
+      <td>The number of ingredients used in the recipe</td>
     </tr>
   </tbody>
-</table>                                                                                                                                            |'
+</table>
 
 The columns of the reviews dataframe that I use are:
-| Column    | Description                                                    |\n|:----------|:---------------------------------------------------------------|\n| recioe_id | the recipe id, matching the id column in the recipes dataframe |\n| rating    | the rating given by the reviewer on a 1 - 5 scale              |'
-
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Column</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>recioe_id</td>
+      <td>the recipe id, matching the id column in the recipes dataframe</td>
+    </tr>
+    <tr>
+      <td>rating</td>
+      <td>the rating given by the reviewer on a 1 - 5 scale</td>
+    </tr>
+  </tbody>
+</table>
 
 ## Data Cleaning and Exploratory Analysis
 I started by merging these two dataframes on the recipe id, in order to get a dataframe that comtains all of the reviews of all the recipes. After merging, I found that some of the ratings were missing, and decided to fill them with 0 in order to avoid bias.
