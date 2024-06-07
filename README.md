@@ -10,40 +10,8 @@ Food is an important aspect of everyone's life, especially mine. Food is not jus
 For this project, obtained 2 datasets, originally taken from food.com. The first dataset, called recipes, contains 12 columns, and 83782 rows. The second dataset, called reviews, contains 5 columns and 731927 rows. 
 
 The columns in the recipe dataframe that I use are:
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th>Column</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>id</td>
-      <td>The recipe ID, which is unique per recipe</td>
-    </tr>
-    <tr>
-      <td>minutes</td>
-      <td>The number of minutes it takes to complete a recipe</td>
-    </tr>
-    <tr>
-      <td>nutrition</td>
-      <td>A string (that looks like a list) of various nutrition facts including calories (#), total fat (PDV), sugar (PDV), sodium (PDV), protein (PDV), saturated fat (PDV), carbohydrates (PDV)</td>
-    </tr>
-    <tr>
-      <td>n_steps</td>
-      <td>The number of steps in the recipe</td>
-    </tr>
-    <tr>
-      <td>ingredients</td>
-      <td>A string (that looks like a list) of ingredients used in the recipe</td>
-    </tr>
-    <tr>
-      <td>n_ingredients</td>
-      <td>The number of ingredients used in the recipe</td>
-    </tr>
-  </tbody>
-</table>
+| Column        | Description                                                                                                                                                                              |\n|:--------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|\n| id            | The recipe ID, which is unique per recipe                                                                                                                                                |\n| minutes       | The number of minutes it takes to complete a recipe                                                                                                                                      |\n| nutrition     | a string (that looks like a list) of various nutrition facts including calories (#), total fat (PDV), sugar (PDV), sodium (PDV), protein (PDV), saturated fat (PDV), carbohydrates (PDV) |\n| n_steps       | the number of steps in the recipe                                                                                                                                                        |\n| ingredients   | a string (that looks like a list) of ingredients used in the recipe                                                                                                                      |\n| n_ingredients | the number of ingredients used in the recipe                                                                                                                                             |
+
 
 The columns of the reviews dataframe that I use are:
 <table border="1" class="dataframe">
