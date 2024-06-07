@@ -9,7 +9,7 @@ This is my final project for DSC80 at UCSD, and focuses on a dataset of recipes 
 Food is an important aspect of everyone's life, especially mine. Food is not just a necessity, but cooking and baking is a hobby and profession for many. Naturally, food.com becomes a prominent website for finding recipes for a variety of dishes, and even allows you to leave reviews and ratings, helping others determine what recipes to try. When looking for a recipe to make, many home cooks value the time it takes to actually make a recipe, to fit it in their busy schedules. Because of this, I think it is important to understand the relationship between the length of the recipe, and its rating, so I decided to focus on the question, **How does the length of the recipe/ ingredients affect the ratings of the recipe?** 
 For this project, obtained 2 datasets, originally taken from food.com. The first dataset, called recipes, contains 12 columns, and 83782 rows. The second dataset, called reviews, contains 5 columns and 731927 rows. 
 
-The columns in the recipe dataframe that I use are:
+The columns in the recipe dataframe that are relevant to my focus are:
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -45,7 +45,7 @@ The columns in the recipe dataframe that I use are:
   </tbody>
 </table>
 
-The columns of the reviews dataframe that I use are:
+The columns of the reviews dataframe that are relevant to my focus are:
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -142,6 +142,8 @@ The final, cleaned, dataframe looks something like this:
   </tbody>
 </table>
 
+### Univariate Analysis
+
 To start my exploration of the data I was working with, I created a histogram to visualize the distribution of the number of steps in the recipe. The number of steps in this dataframe ranges from 1 to 100 steps. The graph shows that they data is skewed to the right, and that most recipes have between 5-9 steps.
 
 <iframe
@@ -150,5 +152,19 @@ To start my exploration of the data I was working with, I created a histogram to
   height="600"
   frameborder="0"
 ></iframe>
+
+I also decided to create a histogram for the distribution of the minutes it takes to do the recipes in the dataset. The distribution is skewed to the right with a very long tail, making the graph unreadable. To combat this, I decided to remove the outliers that I determined using the outlier test. THe average minutes it takes for a recipe in this dataset is 36 minutes.
+
+<iframe
+  src="assets/univariate-minutes.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+### Bivariate Anaylsis
+
+
+
 
 
