@@ -142,8 +142,13 @@ The final, cleaned, dataframe looks something like this:
   </tbody>
 </table>
 
-To start my exploration of the data I was working with, I created a histogram to visualize the distribution of the number of steps in the recipe. The number of steps in this dataframe ranges from 1 to 100 steps, and has an average of 10 steps.
+To start my exploration of the data I was working with, I created a histogram to visualize the distribution of the number of steps in the recipe. The number of steps in this dataframe ranges from 1 to 100 steps. The graph shows that they data is skewed to the right, and that most recipes have between 5-9 steps.
 
-
+<iframe
+  src="assets/univariate-n_steps.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 
