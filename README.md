@@ -405,8 +405,10 @@ The pivot table below shows the mean, median, and mode of the number of calories
 The review column in the dataset has missing data, and I believe the missingness is NMAR, not missing at random. I believe this because most of the time, people only take the time to write out and post a review if they have strong feelings about what they are reviewing and want to express their feelings. Because of this, the missingness of the column depends on how they feel which is the value itself, so the missingness is classified as NMAR.
 
 To determine the missingness for the ratings column, I ran a permutation test to assess if the missingness of the rating column was due to the minutes column. 
+
 Null hypothesis: Missingness of rating does not depend on the number of minutes.
 Alternative hypothesis: the missingness of the rating depends on the number of minutes
+
 After running the test, I obtained a p-value of 0.036, which I failed to reject at the 0.01 significance level, and therefore determined that the missingness of ratings was not dependant on the minutes column.
 
 <iframe
@@ -417,9 +419,47 @@ After running the test, I obtained a p-value of 0.036, which I failed to reject 
 ></iframe>
 
 I then ran a permutation test to assess if the missingness for the ratings column was due to the number of calories in the recipe.
+
 Null hypothesis: Missingness of rating does not depend on the number of calories in the recipe
 Alternative hypothesis: Missingness of the rating depends on the number of calories in the recipe
+
 After running the permutation test, I obtained a p-value of 0.0, and therefore rejected the null hypothesis at the 0.01 significance level, and determined that the missingness of the rating column was dependant on the calories column, and therefore the missingness of the rating column is MAR.
 
 ## Hypothesis Testing
+
+Next, I ran a permutation test to determine if there is a relationship between the length of a recipe and its average rating. 
+
+Null Hypothesis: There is no relationship between time it takes for a recipe and the average rating of a recipe.
+Alternative Hypothesis: Recipes that take over 37 minutes have a lower average rating than ones that take 37 or less minutes.
+
+In order to avoid bias, I removed the outliers from the dataframe using the IQR rule. I then created a new column with boolean values that determined if the minutes of the recipe was less than or equal to 37 minutes. My test statistic was the difference in means between recipes under 37 minutes and over 37 minutes. The significance level i chose was 0.01, and the p-value I found was 0.0, so I therefore reject the null hypothesis, and conclude that there is a relationship between the length fo a recipe and its average rating. This test allows me to determine that that recipe length and ratinge are not independent, and allows me to get closer to understanding thier relationship.
+
+<iframe
+  src="assets/hyp_test.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+## Framing a Prediction Problem
+
+The prediction problem I will focus on is predicting the rating of a recipe, and it is a multiclass classification, as the rating is on a 1-5 scale, where the rating can be treated as a ordinal categorical variable. I chose the response variable to be the average rating of the recipe, as I think it would be interesting to see how the different variable can play a part in the decision of rating a recipe. It could also help to understand the thought process that goes into rating a recipe. The metric I am using to evaluate the model is the F-1 score, I this metric takes into account the imbalances of the dataset, which will a allow for a more balanced evaluation of the model that other metrics dont have. The things we would know at the time of the prediction are the variables we obtain from the recipes from the wensite, including things like the  ingredients, the steps, how many minutes it will take, etc.
+
+## Baseline Model
+
+My baseline model contains only 2 features, the number of steps and the number of ingredients that the recipe states. Both of these variables are numerical variables. I encoded both of these variables using the standard scaler transformation, in order to measure them on equal scales and make sure that large ranges dont cause bias. I used F-1 to evaluate the model, and got a score of 0.638. I dont think this model is very good as it only uses 2 features that I dont give a complete picture of the recipe, so I think a few other features are needed to make the model more complex and perform better. Also, the f-1 score is a little low, so I think adding more features that are important to a recipe will help increase this score.
+
+## Final Model
+
+The features I used in the final model are minutes, n_steps, n_ingredients, calories(#), and has_sugar. I chose to include the minutes and calories features, as these features showed to have a relationship with the ratings column and n_ingredients column, meaning that it would add complexity to the model. I applied the standard scaler transformation to these columns to measure them on the same scale and avoid bias. I also chose to include the has_sugar feature, which I believed would help my model, as sugar is something people pay attention to when choosing a recipe. As this is a categorical feature, I one hot encoded it in order to use it in my model.
+
+I used a random forest classifier for this model, as it would use predictions from many different trees, which would help to reduce overfitting. In order to choose my hyperparameters, I used GridSearchCV from sklearn along with 5-fold validation in order to determine the best value to use for max_depth and n_estimators. After running this, I found that the best parameters were a max depth of None and 200 for n_estimators. The f1-score that this model recieved was 0.914, which is a 0.276 increase. I think that this model is better suited for the data than the baseline model, as it takes into account more variables related to the dataset, giving the model a good overview in order to make a properly educated prediction. 
+
+## Fairness Analysis
+
+
+
+
+
+
 
