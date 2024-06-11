@@ -1,9 +1,5 @@
 # Predicting Recipe Rating based on Recipe Length
-Author: Jahnavi Naik
-
-## Overview
-This is my final project for DSC80 at UCSD, and focuses on a dataset of recipes and reviews from food.com. The main focus of this project is to learn more about the relationship between the length of a recipe and its rating, as well as creating a prediction model to predict the rating of a recipe based on different features.
-
+Author: Jahnavi Naikqw
 
 ## Introduction
 Food is an important aspect of everyone's life, especially mine. Food is not just a necessity, but cooking and baking is a hobby and profession for many. Naturally, food.com becomes a prominent website for finding recipes for a variety of dishes, and even allows you to leave reviews and ratings, helping others determine what recipes to try. When looking for a recipe to make, many home cooks value the time it takes to actually make a recipe, to fit it in their busy schedules. Because of this, I think it is important to understand the relationship between the length of the recipe, and its rating, so I decided to focus on the question, **How does the length of the recipe/ ingredients affect the ratings of the recipe?** 
@@ -447,15 +443,23 @@ The prediction problem I will focus on is predicting the rating of a recipe, and
 
 ## Baseline Model
 
-My baseline model contains only 2 features, the number of steps and the number of ingredients that the recipe states. Both of these variables are numerical variables. I encoded both of these variables using the standard scaler transformation, in order to measure them on equal scales and make sure that large ranges dont cause bias. I used F-1 to evaluate the model, and got a score of 0.638. I dont think this model is very good as it only uses 2 features that I dont give a complete picture of the recipe, so I think a few other features are needed to make the model more complex and perform better. Also, the f-1 score is a little low, so I think adding more features that are important to a recipe will help increase this score.
+My baseline model contains only 2 features, the number of steps and the number of ingredients that the recipe states. Both of these variables are numerical variables. I encoded both of these variables using the standard scaler transformation, in order to measure them on equal scales and make sure that large ranges dont cause bias. I used F1-score to evaluate the model, and got a score of 0.638. I dont think this model is very good as it only uses 2 features that I dont give a complete picture of the recipe, so I think a few other features are needed to make the model more complex and perform better. Also, the F1-score is a little low, so I think adding more features that are important to a recipe will help increase this score.
 
 ## Final Model
 
 The features I used in the final model are minutes, n_steps, n_ingredients, calories(#), and has_sugar. I chose to include the minutes and calories features, as these features showed to have a relationship with the ratings column and n_ingredients column, meaning that it would add complexity to the model. I applied the standard scaler transformation to these columns to measure them on the same scale and avoid bias. I also chose to include the has_sugar feature, which I believed would help my model, as sugar is something people pay attention to when choosing a recipe. As this is a categorical feature, I one hot encoded it in order to use it in my model.
 
-I used a random forest classifier for this model, as it would use predictions from many different trees, which would help to reduce overfitting. In order to choose my hyperparameters, I used GridSearchCV from sklearn along with 5-fold validation in order to determine the best value to use for max_depth and n_estimators. After running this, I found that the best parameters were a max depth of None and 200 for n_estimators. The f1-score that this model recieved was 0.914, which is a 0.276 increase. I think that this model is better suited for the data than the baseline model, as it takes into account more variables related to the dataset, giving the model a good overview in order to make a properly educated prediction. 
+I used a random forest classifier for this model, as it would use predictions from many different trees, which would help to reduce overfitting. In order to choose my hyperparameters, I used GridSearchCV from sklearn along with 5-fold validation in order to determine the best value to use for max_depth and n_estimators. After running this, I found that the best parameters were a max depth of None and 200 for n_estimators. The F1-score that this model recieved was 0.914, which is a 0.276 increase. I think that this model is better suited for the data than the baseline model, as it takes into account more variables related to the dataset, giving the model a good overview in order to make a properly educated prediction. 
 
 ## Fairness Analysis
+
+To evaluate the fairness of the model, I decided to determine if the precision of the model was roughly the same between shorter recipes (35 minutes or less) and longer recipes (over 35 minutes).
+
+Null Hypothesis: The model is fair. The precision for shorter recipes is roughly the same as longer recipes
+Alternative Hypothesis: The model is unfair. The precision for shorter recipes is lower than longer recipes
+
+My test statistic was the difference between the precision of the model on shorter recipes and longer recipes (precision of shorter - precision of longer). I chose a significanve level of 0.01, and obtained a p-value of 0.88, and therefore fail to reject the null hypothesis. I conclucde that the model is fair between shorter and longer recipes.
+
 
 
 
