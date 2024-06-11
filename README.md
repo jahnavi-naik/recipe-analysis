@@ -460,6 +460,13 @@ Alternative Hypothesis: The model is unfair. The precision for shorter recipes i
 
 My test statistic was the difference between the precision of the model on shorter recipes and longer recipes (precision of shorter - precision of longer). I chose a significanve level of 0.01, and obtained a p-value of 0.88, and therefore fail to reject the null hypothesis. I conclucde that the model is fair between shorter and longer recipes.
 
+<iframe
+  src="assets/fairness.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
 
 
 
