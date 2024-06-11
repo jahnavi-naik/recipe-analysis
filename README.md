@@ -1,9 +1,9 @@
 # Predicting Recipe Rating based on Recipe Length
-Author: Jahnavi Naikqw
+Author: Jahnavi Naik
 
 ## Introduction
 Food is an important aspect of everyone's life, especially mine. Food is not just a necessity, but cooking and baking is a hobby and profession for many. Naturally, food.com becomes a prominent website for finding recipes for a variety of dishes, and even allows you to leave reviews and ratings, helping others determine what recipes to try. When looking for a recipe to make, many home cooks value the time it takes to actually make a recipe, to fit it in their busy schedules. Because of this, I think it is important to understand the relationship between the length of the recipe, and its rating, so I decided to focus on the question, **How does the length of the recipe/ ingredients affect the ratings of the recipe?** 
-For this project, obtained 2 datasets, originally taken from food.com. The first dataset, called recipes, contains 12 columns, and 83782 rows. The second dataset, called reviews, contains 5 columns and 731927 rows. 
+For this project, I obtained 2 datasets, originally taken from food.com. The first dataset, called recipes, contains 12 columns, and 83782 rows. The second dataset, called reviews, contains 5 columns and 731927 rows. 
 
 The columns in the recipe dataframe that are relevant to my focus are:
 <table border="1" class="dataframe">
@@ -171,7 +171,7 @@ I then decided to look at the relationship between pairs of variables, specifica
 
 ### Aggregates
 
-The pivot table below shows the mean, median, and mode of the number of calories per the number of ingredients in the recipe. Outliers were removed using the IQR rule. THe pivot table shows that as the number of ingredients increases, the number of calories of the recipe also increases, show a positive relationship between the two variables.
+The pivot table below shows the mean, median, and mode of the number of calories per the number of ingredients in the recipe. Outliers were removed using the IQR rule. THe pivot table shows that as the number of ingredients increases, the number of calories of the recipe also increases, showing a positive relationship between the two variables.
 
 <table border="1" class="dataframe">
   <thead>
@@ -428,7 +428,7 @@ Next, I ran a permutation test to determine if there is a relationship between t
 Null Hypothesis: There is no relationship between time it takes for a recipe and the average rating of a recipe.
 Alternative Hypothesis: Recipes that take over 37 minutes have a lower average rating than ones that take 37 or less minutes.
 
-In order to avoid bias, I removed the outliers from the dataframe using the IQR rule. I then created a new column with boolean values that determined if the minutes of the recipe was less than or equal to 37 minutes. My test statistic was the difference in means between recipes under 37 minutes and over 37 minutes. The significance level i chose was 0.01, and the p-value I found was 0.0, so I therefore reject the null hypothesis, and conclude that there is a relationship between the length fo a recipe and its average rating. This test allows me to determine that that recipe length and ratinge are not independent, and allows me to get closer to understanding thier relationship.
+In order to avoid bias, I removed the outliers from the dataframe using the IQR rule. I then created a new column with boolean values that determined if the minutes of the recipe was less than or equal to 37 minutes. My test statistic was the difference in means between recipes under 37 minutes and over 37 minutes. The significance level I chose was 0.01, and the p-value I found was 0.0, so I therefore reject the null hypothesis, and conclude that there is a relationship between the length fo a recipe and its average rating. This test allows me to determine that that recipe length and ratinge are not independent, and allows me to get closer to understanding thier relationship.
 
 <iframe
   src="assets/hyp_test.html"
@@ -439,7 +439,7 @@ In order to avoid bias, I removed the outliers from the dataframe using the IQR 
 
 ## Framing a Prediction Problem
 
-The prediction problem I will focus on is predicting the rating of a recipe, and it is a multiclass classification, as the rating is on a 1-5 scale, where the rating can be treated as a ordinal categorical variable. I chose the response variable to be the average rating of the recipe, as I think it would be interesting to see how the different variable can play a part in the decision of rating a recipe. It could also help to understand the thought process that goes into rating a recipe. The metric I am using to evaluate the model is the F-1 score, I this metric takes into account the imbalances of the dataset, which will a allow for a more balanced evaluation of the model that other metrics dont have. The things we would know at the time of the prediction are the variables we obtain from the recipes from the wensite, including things like the  ingredients, the steps, how many minutes it will take, etc.
+The prediction problem I will focus on is predicting the rating of a recipe, and it is a multiclass classification, as the rating is on a 1-5 scale, where the rating can be treated as a ordinal categorical variable. I use a Random Forest Classifier and I chose the response variable to be the average rating of the recipe, as I think it would be interesting to see how the different variables can play a part in the decision of rating a recipe. It could also help to understand the thought process that goes into rating a recipe. The metric I am using to evaluate the model is the F-1 score, as this metric takes into account the imbalances of the dataset, which will a allow for a more balanced evaluation of the model that other metrics don't have. The things we would know at the time of the prediction are the variables we obtain from the recipes from the wensite, including things like the ingredients, the steps, how many minutes it will take, etc.
 
 ## Baseline Model
 
@@ -447,9 +447,9 @@ My baseline model contains only 2 features, the number of steps and the number o
 
 ## Final Model
 
-The features I used in the final model are minutes, n_steps, n_ingredients, calories(#), and has_sugar. I chose to include the minutes and calories features, as these features showed to have a relationship with the ratings column and n_ingredients column, meaning that it would add complexity to the model. I applied the standard scaler transformation to these columns to measure them on the same scale and avoid bias. I also chose to include the has_sugar feature, which I believed would help my model, as sugar is something people pay attention to when choosing a recipe. As this is a categorical feature, I one hot encoded it in order to use it in my model.
+The features I used in the final model are minutes, n_steps, n_ingredients, calories(#), and has_sugar. I chose to include the minutes and calories features, as these features showed to have a relationship with the ratings column and n_ingredients column, meaning that it would add complexity to the model. I applied the standard scaler transformation to these columns to measure them on the same scale and avoid bias. I also chose to include the has_sugar feature, which I believed would help my model, as sugar is something people pay attention to when choosing a recipe. As this is a categorical feature, I one-hot encoded it in order to use it in my model.
 
-I used a random forest classifier for this model, as it would use predictions from many different trees, which would help to reduce overfitting. In order to choose my hyperparameters, I used GridSearchCV from sklearn along with 5-fold validation in order to determine the best value to use for max_depth and n_estimators. After running this, I found that the best parameters were a max depth of None and 200 for n_estimators. The F1-score that this model recieved was 0.914, which is a 0.276 increase. I think that this model is better suited for the data than the baseline model, as it takes into account more variables related to the dataset, giving the model a good overview in order to make a properly educated prediction. 
+I used a Random Forest Classifier for this model, as it would use predictions from many different trees, which would help to reduce overfitting. In order to choose my hyperparameters, I used GridSearchCV from sklearn along with 5-fold validation in order to determine the best value to use for max_depth and n_estimators. After running this, I found that the best parameters were a max depth of None and 200 for n_estimators. The F1-score that this model recieved was 0.914, which is a 0.276 increase from the baseline model. I think that this model is better suited for the data than the baseline model, as it takes into account more variables related to the dataset, giving the model a good overview in order to make a properly educated prediction. 
 
 ## Fairness Analysis
 
@@ -466,11 +466,3 @@ My test statistic was the difference between the precision of the model on short
   height="600"
   frameborder="0"
 ></iframe>
-
-
-
-
-
-
-
-
