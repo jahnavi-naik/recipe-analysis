@@ -153,7 +153,7 @@ I also decided to create a histogram for the distribution of the minutes it take
 
 <iframe
   src="assets/univariate-minutes.html"
-  width="700"
+  width="600"
   height="600"
   frameborder="0"
 ></iframe>
@@ -164,7 +164,7 @@ I then decided to look at the relationship between pairs of variables, specifica
 
 <iframe
   src="assets/n_steps-rating.html"
-  width="700"
+  width="600"
   height="600"
   frameborder="0"
 ></iframe>
@@ -409,7 +409,7 @@ After running the test, I obtained a p-value of 0.036, which I failed to reject 
 
 <iframe
   src="assets/missing_test.html"
-  width="700"
+  width="800"
   height="600"
   frameborder="0"
 ></iframe>
@@ -462,7 +462,7 @@ My test statistic was the difference between the precision of the model on short
 
 <iframe
   src="assets/fairness.html"
-  width="700"
+  width="600"
   height="600"
   frameborder="0"
 ></iframe>
